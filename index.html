@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Code Quiz</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <div id="start-screen" class="screen active">
+      <h1>💻 Programming Quiz</h1>
+      <p>Test your coding knowledge!</p>
+      <button id="start-btn">Start Quiz</button>
+    </div>
+
+    <div id="quiz-screen" class="screen">
+      <div class="top-bar">
+        <span id="question-count"></span>
+        <span id="score-display">Score: 0</span>
+      </div>
+      <div class="progress-bar">
+        <div id="progress-fill"></div>
+      </div>
+      <h2 id="question-text"></h2>
+      <div id="options" class="options"></div>
+    </div>
+
+    <div id="end-screen" class="screen">
+      <h1>Quiz Complete!</h1>
+      <p id="final-score"></p>
+      <button id="restart-btn">Try Again</button>
+    </div>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
