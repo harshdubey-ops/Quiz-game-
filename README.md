@@ -13,8 +13,9 @@ A simple web-based quiz game to test your programming and CS fundamentals knowle
 ## 🛠 Tech Stack
 - HTML5
 - CSS3
-- JavaScript
+- JavaScript(vanila)
 
 ## 🚀 Live Demo
 [Play the Quiz](https://harshdubey-ops.github.io/Quiz-game-/)
 
+Author - (Harsh Dubey)
