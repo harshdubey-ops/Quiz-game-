@@ -2,35 +2,73 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Code Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <button id="mute-btn" class="mute-btn" aria-label="Toggle sound">🔊</button>
+
   <div class="container">
 
     <div id="start-screen" class="screen active">
-      <h1>💻 Programming Quiz</h1>
-      <p>Test your coding knowledge!</p>
-      <button id="start-btn">Start Quiz</button>
+      <p class="eyebrow">Programming Quiz</p>
+      <h1>How well do you<br>know code?</h1>
+      <p class="sub">Pick a difficulty to begin.</p>
+
+      <div class="difficulty-select">
+        <button class="diff-btn" data-diff="easy">
+          <span class="diff-label">Easy</span>
+          <span class="diff-meta">20s · +10 / -5</span>
+        </button>
+        <button class="diff-btn" data-diff="medium">
+          <span class="diff-label">Medium</span>
+          <span class="diff-meta">15s · +15 / -7</span>
+        </button>
+        <button class="diff-btn" data-diff="hard">
+          <span class="diff-label">Hard</span>
+          <span class="diff-meta">10s · +20 / -10</span>
+        </button>
+      </div>
+
+      <p id="high-score" class="high-score"></p>
     </div>
 
     <div id="quiz-screen" class="screen">
       <div class="top-bar">
-        <span id="question-count"></span>
-        <span id="score-display">Score: 0</span>
+        <span id="question-count" class="tag"></span>
+        <span id="timer" class="tag timer">15</span>
+        <span id="score-display" class="tag">0 pts</span>
       </div>
       <div class="progress-bar">
         <div id="progress-fill"></div>
       </div>
+
       <h2 id="question-text"></h2>
       <div id="options" class="options"></div>
+
+      <div id="explanation" class="explanation"></div>
+
+      <div class="action-row">
+        <button id="skip-btn" class="btn-ghost">Skip question</button>
+        <span id="streak" class="streak"></span>
+      </div>
     </div>
 
     <div id="end-screen" class="screen">
-      <h1>Quiz Complete!</h1>
-      <p id="final-score"></p>
-      <button id="restart-btn">Try Again</button>
+      <p class="eyebrow">Results</p>
+      <h1 id="result-heading">Quiz complete</h1>
+      <p id="final-score" class="final-score"></p>
+      <p id="final-detail" class="final-detail"></p>
+      <p id="best-score-msg" class="high-score"></p>
+      <div class="end-actions">
+        <button id="restart-btn">Try again</button>
+        <button id="share-btn" class="btn-ghost">Share result</button>
+      </div>
     </div>
 
   </div>
