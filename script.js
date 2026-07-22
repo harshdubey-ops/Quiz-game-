@@ -1,4 +1,4 @@
-const questionBank = {
+﻿const questionBank = {
   easy: [
     { q: "Which language is known as the 'mother of all languages'?", options: ["Java", "C", "Python", "JavaScript"], answer: 1, explain: "C, created in 1972, directly influenced C++, Java, JavaScript, and many others." },
     { q: "What does OOP stand for?", options: ["Object Oriented Programming", "Order Of Precedence", "Open Object Protocol", "Output Oriented Program"], answer: 0, explain: "OOP organizes code around objects that bundle data and behavior together." },
@@ -38,6 +38,8 @@ const DIFFICULTY_CONFIG = {
 };
 
 const HIGH_SCORE_PREFIX = "codeQuizHighScore_";
+const ACTION_SKIP = -2;
+const ACTION_TIMEOUT = -1;
 
 let selectedDifficulty = null;
 let quizQuestions = [];
@@ -49,6 +51,8 @@ let timeLeft = 0;
 let timerInterval = null;
 let answered = false;
 let soundOn = true;
+let answerTimes = [];
+let questionStartTime = 0;
 
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
@@ -73,6 +77,9 @@ const streakDisplay = document.getElementById("streak");
 const highScoreDisplay = document.getElementById("high-score");
 const bestScoreMsg = document.getElementById("best-score-msg");
 const explanationBox = document.getElementById("explanation");
+const difficultyLabel = document.getElementById("difficulty-label");
+const progressPercent = document.getElementById("progress-percent");
+const performanceSummary = document.getElementById("performance-summary");
 
 diffButtons.forEach(btn => btn.addEventListener("click", () => startQuiz(btn.dataset.diff)));
 restartBtn.addEventListener("click", () => {
@@ -80,7 +87,7 @@ restartBtn.addEventListener("click", () => {
   startScreen.classList.add("active");
   showHighScoreOnStart();
 });
-skipBtn.addEventListener("click", () => selectAnswer(-2));
+skipBtn.addEventListener("click", () => selectAnswer(ACTION_SKIP));
 shareBtn.addEventListener("click", shareResult);
 muteBtn.addEventListener("click", toggleMute);
 document.addEventListener("keydown", handleKeydown);
@@ -107,6 +114,7 @@ function showHighScoreOnStart() {
 
 function startQuiz(difficulty) {
   selectedDifficulty = difficulty;
+  const config = DIFFICULTY_CONFIG[difficulty];
   const bank = shuffle(questionBank[difficulty]);
   quizQuestions = bank.map(item => {
     const optionPairs = item.options.map((opt, i) => ({ text: opt, isCorrect: i === item.answer }));
@@ -123,7 +131,9 @@ function startQuiz(difficulty) {
   points = 0;
   correctCount = 0;
   streak = 0;
+  answerTimes = [];
 
+  difficultyLabel.textContent = config.label;
   startScreen.classList.remove("active");
   endScreen.classList.remove("active");
   quizScreen.classList.add("active");
@@ -142,18 +152,23 @@ function showQuestion() {
   questionText.textContent = q.question;
   questionCount.textContent = `Q${String(currentQuestion + 1).padStart(2, "0")} / ${quizQuestions.length}`;
   scoreDisplay.textContent = `${points} pts`;
-  progressFill.style.width = `${(currentQuestion / quizQuestions.length) * 100}%`;
+  const progressValue = Math.round((currentQuestion / quizQuestions.length) * 100);
+  progressFill.style.width = `${progressValue}%`;
+  progressPercent.textContent = `${progressValue}%`;
+  progressFill.parentElement.setAttribute("aria-valuenow", progressValue);
   streakDisplay.textContent = streak >= 2 ? `🔥 ${streak} streak` : "";
 
   optionsDiv.innerHTML = "";
   q.options.forEach((option, index) => {
     const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option-btn";
     btn.innerHTML = `<span class="option-index">[${index + 1}]</span><span>${option}</span>`;
-    btn.classList.add("option-btn");
     btn.addEventListener("click", () => selectAnswer(index));
     optionsDiv.appendChild(btn);
   });
 
+  questionStartTime = performance.now();
   startTimer(config.time);
 }
 
@@ -167,7 +182,7 @@ function startTimer(duration) {
     updateTimerDisplay();
     if (timeLeft <= 0) {
       clearInterval(timerInterval);
-      if (!answered) selectAnswer(-1);
+      if (!answered) selectAnswer(ACTION_TIMEOUT);
     }
   }, 1000);
 }
@@ -196,6 +211,11 @@ function selectAnswer(selectedIndex) {
   const config = DIFFICULTY_CONFIG[selectedDifficulty];
   const buttons = document.querySelectorAll(".option-btn");
 
+  if (selectedIndex !== ACTION_SKIP) {
+    const elapsed = (performance.now() - questionStartTime) / 1000;
+    answerTimes.push(elapsed);
+  }
+
   buttons.forEach((btn, index) => {
     btn.disabled = true;
     if (index === q.answer) btn.classList.add("correct");
@@ -207,7 +227,7 @@ function selectAnswer(selectedIndex) {
     correctCount++;
     streak++;
     playTone("correct");
-  } else if (selectedIndex === -2) {
+  } else if (selectedIndex === ACTION_SKIP) {
     playTone("skip");
     streak = 0;
   } else {
@@ -230,6 +250,18 @@ function selectAnswer(selectedIndex) {
   }, 2200);
 }
 
+function getAverageResponse() {
+  if (!answerTimes.length) return 0;
+  return answerTimes.reduce((sum, time) => sum + time, 0) / answerTimes.length;
+}
+
+function getPerformanceRating(averageSeconds, accuracy) {
+  if (accuracy >= 0.8 && averageSeconds <= 6) return "Elite performance";
+  if (accuracy >= 0.6 && averageSeconds <= 8) return "Strong performance";
+  if (accuracy >= 0.4) return "Solid performance";
+  return "Keep improving";
+}
+
 function finishQuiz() {
   quizScreen.classList.remove("active");
   endScreen.classList.add("active");
@@ -241,6 +273,10 @@ function finishQuiz() {
 
   const pct = correctCount / quizQuestions.length;
   resultHeading.textContent = pct >= 0.8 ? "Excellent work" : pct >= 0.5 ? "Good effort" : "Keep practicing";
+
+  const avgTime = getAverageResponse();
+  const rating = getPerformanceRating(avgTime, pct);
+  performanceSummary.textContent = `Average answer time: ${avgTime.toFixed(1)}s · Accuracy: ${Math.round(pct * 100)}% · ${rating}`;
 
   const key = HIGH_SCORE_PREFIX + selectedDifficulty;
   const best = getHighScore(selectedDifficulty);

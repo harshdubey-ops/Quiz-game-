@@ -1,21 +1,34 @@
 # 💻 Programming Quiz Game
 
-A simple web-based quiz game to test your programming and CS fundamentals knowledge, built with HTML, CSS, and JavaScript.
+A polished web-based quiz that tests programming knowledge and response speed. The game includes instant feedback, performance rating, and high-score tracking for each difficulty level.
 
 ## 🎯 Features
-- 10 multiple-choice questions on programming concepts
-- Real-time score tracking
-- Progress bar
-- Instant answer feedback (correct/wrong highlighting)
-- Clean dark theme UI
-- Fully responsive design
+- 10 multiple-choice programming questions per difficulty
+- Easy / Medium / Hard difficulty levels
+- Real-time score tracking and progress meter
+- Instant correct/wrong feedback with answer explanation
+- Performance summary showing average answer time and accuracy
+- High score storage in local browser storage
+- Cleaner dark theme with keyboard support
 
 ## 🛠 Tech Stack
 - HTML5
 - CSS3
-- JavaScript(vanila)
+- JavaScript (vanilla)
 
-## 🚀 Live Demo
-[Play the Quiz](https://harshdubey-ops.github.io/Quiz-game-/)
+## 🚀 Run Locally
+1. Open `index.html` in your browser
+2. Or use a simple local server (recommended) such as Live Server in VS Code
 
-Author - (Harsh Dubey)
+## 🧠 How to Play
+1. Choose a difficulty level
+2. Answer each question before time runs out
+3. Skip a question if you're unsure
+4. Review your performance score after the quiz
+
+## 📌 Notes
+- The app saves the best score per difficulty in local storage.
+- The share button copies your result text when native sharing is unavailable.
+
+## Author
+Harsh Dubey
