@@ -30,5 +30,7 @@ A polished web-based quiz that tests programming knowledge and response speed. T
 - The app saves the best score per difficulty in local storage.
 - The share button copies your result text when native sharing is unavailable.
 
+## Live link
+https://harshdubey-ops.github.io/Quiz-game-/
 ## Author
 Harsh Dubey
