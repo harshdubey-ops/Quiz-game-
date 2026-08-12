@@ -1,34 +1,64 @@
 ﻿const questionBank = {
-  easy: [
-    { q: "Which language is known as the 'mother of all languages'?", options: ["Java", "C", "Python", "JavaScript"], answer: 1, explain: "C, created in 1972, directly influenced C++, Java, JavaScript, and many others." },
-    { q: "What does OOP stand for?", options: ["Object Oriented Programming", "Order Of Precedence", "Open Object Protocol", "Output Oriented Program"], answer: 0, explain: "OOP organizes code around objects that bundle data and behavior together." },
-    { q: "Which data structure uses FIFO?", options: ["Stack", "Queue", "Tree", "Graph"], answer: 1, explain: "Queue follows First In First Out — the first element added is the first removed." },
-    { q: "Which HTML tag is used to link a CSS file?", options: ["<style>", "<css>", "<link>", "<script>"], answer: 2, explain: "<link rel=\"stylesheet\"> connects an external CSS file to an HTML document." },
-    { q: "What does SQL stand for?", options: ["Structured Query Language", "Simple Query Logic", "Sequential Query Language", "System Query Language"], answer: 0, explain: "SQL is used to query and manage data in relational databases." },
-    { q: "Which symbol is used for single-line comments in JavaScript?", options: ["<!-- -->", "/* */", "//", "#"], answer: 2, explain: "// starts a single-line comment in JavaScript, C, C++, and Java." },
-    { q: "What is the file extension for Python files?", options: [".py", ".pt", ".pn", ".python"], answer: 0, explain: "Python source files use the .py extension." },
-    { q: "Which of these is a loop in most programming languages?", options: ["if", "for", "switch", "try"], answer: 1, explain: "The for loop repeats a block of code a set number of times." }
-  ],
-  medium: [
-    { q: "What is the time complexity of binary search?", options: ["O(n)", "O(n^2)", "O(log n)", "O(1)"], answer: 2, explain: "Binary search halves the search space each step, giving logarithmic time." },
-    { q: "Which keyword is used to inherit a class in Java?", options: ["implements", "extends", "inherits", "super"], answer: 1, explain: "extends is used for class inheritance; implements is for interfaces." },
-    { q: "Which operator is used for strict comparison in JavaScript?", options: ["=", "==", "===", "!="], answer: 2, explain: "=== checks both value and type, unlike == which allows type coercion." },
-    { q: "In C++, which symbol is used for pointers?", options: ["&", "*", "#", "@"], answer: 1, explain: "* declares a pointer variable; & is used to get an address." },
-    { q: "Which sorting algorithm has the best average time complexity?", options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Insertion Sort"], answer: 2, explain: "Quick Sort averages O(n log n), better than the O(n^2) of the others listed." },
-    { q: "What does the 'this' keyword refer to in a JavaScript object method?", options: ["The global object", "The object the method belongs to", "The parent function", "Nothing, it's unused"], answer: 1, explain: "Inside a method, 'this' refers to the object that called the method." },
-    { q: "Which HTTP method is typically used to update existing data?", options: ["GET", "POST", "PUT", "DELETE"], answer: 2, explain: "PUT is conventionally used to update or replace an existing resource." },
-    { q: "What is a primary key in a database table?", options: ["A duplicate-allowed column", "A uniquely identifying column", "A foreign reference", "An index type"], answer: 1, explain: "A primary key uniquely identifies each row and cannot contain duplicates or NULLs." }
-  ],
-  hard: [
-    { q: "What is the worst-case time complexity of Quick Sort?", options: ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"], answer: 2, explain: "Quick Sort degrades to O(n^2) when the pivot repeatedly splits data unevenly." },
-    { q: "Which data structure is best suited for implementing recursion internally?", options: ["Queue", "Stack", "Heap", "Linked List"], answer: 1, explain: "Function calls use a call stack — each call is pushed and popped in LIFO order." },
-    { q: "In dynamic programming, what does memoization primarily reduce?", options: ["Space complexity", "Redundant computation", "Code length", "Compilation time"], answer: 1, explain: "Memoization caches results of subproblems so they aren't recomputed." },
-    { q: "What is the space complexity of an adjacency matrix for a graph with V vertices?", options: ["O(V)", "O(V + E)", "O(V^2)", "O(E)"], answer: 2, explain: "An adjacency matrix stores a V x V grid regardless of edge count, giving O(V^2)." },
-    { q: "Which of these is NOT a property of a B-Tree?", options: ["Self-balancing", "All leaves at same depth", "Only two children per node", "Used in databases and file systems"], answer: 2, explain: "B-Trees can have many children per node, unlike binary trees which have at most two." },
-    { q: "What does the CAP theorem say a distributed system can guarantee at most?", options: ["All four of consistency, availability, partition tolerance, and speed", "Two of consistency, availability, and partition tolerance", "Only consistency", "Only availability"], answer: 1, explain: "CAP theorem states a distributed system can only fully guarantee two of the three: Consistency, Availability, Partition tolerance." },
-    { q: "Which technique helps prevent SQL injection most effectively?", options: ["String concatenation", "Parameterized queries", "Client-side validation only", "Using SELECT *"], answer: 1, explain: "Parameterized queries separate SQL logic from data, preventing malicious input from altering the query." },
-    { q: "What is the amortized time complexity of inserting into a dynamic array (like ArrayList)?", options: ["O(n)", "O(log n)", "O(1)", "O(n^2)"], answer: 2, explain: "Occasional resizing costs O(n), but averaged over many insertions it amortizes to O(1)." }
-  ]
+  general: {
+    easy: [
+      { q: "Which language is known as the 'mother of all languages'?", options: ["Java", "C", "Python", "JavaScript"], answer: 1, explain: "C, created in 1972, directly influenced C++, Java, JavaScript, and many others." },
+      { q: "What does OOP stand for?", options: ["Object Oriented Programming", "Order Of Precedence", "Open Object Protocol", "Output Oriented Program"], answer: 0, explain: "OOP organizes code around objects that bundle data and behavior together." },
+      { q: "Which data structure uses FIFO?", options: ["Stack", "Queue", "Tree", "Graph"], answer: 1, explain: "Queue follows First In First Out — the first element added is the first removed." },
+      { q: "What does SQL stand for?", options: ["Structured Query Language", "Simple Query Logic", "Sequential Query Language", "System Query Language"], answer: 0, explain: "SQL is used to query and manage data in relational databases." }
+    ],
+    medium: [
+      { q: "What is the time complexity of binary search?", options: ["O(n)", "O(n^2)", "O(log n)", "O(1)"], answer: 2, explain: "Binary search halves the search space each step, giving logarithmic time." },
+      { q: "Which keyword is used to inherit a class in Java?", options: ["implements", "extends", "inherits", "super"], answer: 1, explain: "extends is used for class inheritance; implements is for interfaces." },
+      { q: "Which operator is used for strict comparison in JavaScript?", options: ["=", "==", "===", "!="], answer: 2, explain: "=== checks both value and type, unlike == which allows type coercion." },
+      { q: "What is a primary key in a database table?", options: ["A duplicate-allowed column", "A uniquely identifying column", "A foreign reference", "An index type"], answer: 1, explain: "A primary key uniquely identifies each row and cannot contain duplicates or NULLs." }
+    ],
+    hard: [
+      { q: "What is the worst-case time complexity of Quick Sort?", options: ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"], answer: 2, explain: "Quick Sort degrades to O(n^2) when the pivot repeatedly splits data unevenly." },
+      { q: "Which data structure is best suited for implementing recursion internally?", options: ["Queue", "Stack", "Heap", "Linked List"], answer: 1, explain: "Function calls use a call stack — each call is pushed and popped in LIFO order." },
+      { q: "What does the CAP theorem say a distributed system can guarantee at most?", options: ["All four of consistency, availability, partition tolerance, and speed", "Two of consistency, availability, and partition tolerance", "Only consistency", "Only availability"], answer: 1, explain: "CAP theorem states a distributed system can only fully guarantee two of the three: Consistency, Availability, Partition tolerance." },
+      { q: "What is the amortized time complexity of inserting into a dynamic array (like ArrayList)?", options: ["O(n)", "O(log n)", "O(1)", "O(n^2)"], answer: 2, explain: "Occasional resizing costs O(n), but averaged over many insertions it amortizes to O(1)." }
+    ]
+  },
+  web: {
+    easy: [
+      { q: "Which HTML tag is used to link a CSS file?", options: ["<style>", "<css>", "<link>", "<script>"], answer: 2, explain: "<link rel=\"stylesheet\"> connects an external CSS file to an HTML document." },
+      { q: "Which CSS property changes text color?", options: ["background-color", "color", "margin", "padding"], answer: 1, explain: "The color property controls the text foreground color." },
+      { q: "What does CSS stand for?", options: ["Creative Style Sheets", "Cascading Style Sheets", "Computer Style Syntax", "Colorful Style Syntax"], answer: 1, explain: "CSS is used to describe the presentation of a document written in HTML." },
+      { q: "Which JavaScript method adds an element to the end of an array?", options: ["push()", "pop()", "shift()", "unshift()"], answer: 0, explain: "push() appends a new element to the end of an array." }
+    ],
+    medium: [
+      { q: "Which HTTP method is typically used to update existing data?", options: ["GET", "POST", "PUT", "DELETE"], answer: 2, explain: "PUT is conventionally used to update or replace an existing resource." },
+      { q: "What does the 'this' keyword refer to in a JavaScript object method?", options: ["The global object", "The object the method belongs to", "The parent function", "Nothing, it's unused"], answer: 1, explain: "Inside a method, 'this' refers to the object that called the method." },
+      { q: "What is semantic HTML?", options: ["HTML with only colors", "HTML that uses meaningful elements", "HTML with only images", "HTML without CSS"], answer: 1, explain: "Semantic HTML uses elements like header, main, and article to convey meaning." },
+      { q: "Which attribute is used to make a link open in a new tab?", options: ["target=\"_blank\"", "href=\"_blank\"", "newtab=\"true\"", "open=\"new\""], answer: 0, explain: "The target attribute with _blank opens the linked page in a new tab." }
+    ],
+    hard: [
+      { q: "What is the purpose of the box-sizing property in CSS?", options: ["It changes layout direction", "It includes padding and borders in size calculations", "It animates an element", "It removes margin"], answer: 1, explain: "box-sizing: border-box makes width and height include padding and borders." },
+      { q: "Which technique helps prevent SQL injection most effectively?", options: ["String concatenation", "Parameterized queries", "Client-side validation only", "Using SELECT *"], answer: 1, explain: "Parameterized queries separate SQL logic from data, preventing malicious input from altering the query." },
+      { q: "What is a closure in JavaScript?", options: ["A syntax error", "A function bundled with its lexical environment", "A CSS animation", "A database query"], answer: 1, explain: "A closure gives a function access to variables from its outer scope, even after that scope ends." },
+      { q: "Which property controls the spacing between flexbox items?", options: ["justify-content", "gap", "position", "display"], answer: 1, explain: "The gap property adds spacing between flex items." }
+    ]
+  },
+  cs: {
+    easy: [
+      { q: "Which of these is a loop in most programming languages?", options: ["if", "for", "switch", "try"], answer: 1, explain: "The for loop repeats a block of code a set number of times." },
+      { q: "Which symbol is used for single-line comments in JavaScript?", options: ["<!-- -->", "/* */", "//", "#"], answer: 2, explain: "// starts a single-line comment in JavaScript, C, C++, and Java." },
+      { q: "What is the file extension for Python files?", options: [".py", ".pt", ".pn", ".python"], answer: 0, explain: "Python source files use the .py extension." },
+      { q: "Which data structure uses LIFO?", options: ["Queue", "Stack", "Tree", "HashMap"], answer: 1, explain: "A stack follows Last In First Out ordering." }
+    ],
+    medium: [
+      { q: "In C++, which symbol is used for pointers?", options: ["&", "*", "#", "@"], answer: 1, explain: "* declares a pointer variable; & is used to get an address." },
+      { q: "Which sorting algorithm has the best average time complexity?", options: ["Bubble Sort", "Selection Sort", "Quick Sort", "Insertion Sort"], answer: 2, explain: "Quick Sort averages O(n log n), better than the O(n^2) of the others listed." },
+      { q: "What is a hash table primarily used for?", options: ["Sorting data", "Storing key-value pairs efficiently", "Rendering images", "Network routing"], answer: 1, explain: "Hash tables support fast lookup, insertion, and deletion using key-value pairs." },
+      { q: "What is recursion?", options: ["A loop that never ends", "A function calling itself", "A tree traversal method", "A sorting method"], answer: 1, explain: "Recursion occurs when a function calls itself to solve smaller subproblems." }
+    ],
+    hard: [
+      { q: "In dynamic programming, what does memoization primarily reduce?", options: ["Space complexity", "Redundant computation", "Code length", "Compilation time"], answer: 1, explain: "Memoization caches results of subproblems so they aren't recomputed." },
+      { q: "What is the space complexity of an adjacency matrix for a graph with V vertices?", options: ["O(V)", "O(V + E)", "O(V^2)", "O(E)"], answer: 2, explain: "An adjacency matrix stores a V x V grid regardless of edge count, giving O(V^2)." },
+      { q: "Which of these is NOT a property of a B-Tree?", options: ["Self-balancing", "All leaves at same depth", "Only two children per node", "Used in databases and file systems"], answer: 2, explain: "B-Trees can have many children per node, unlike binary trees which have at most two." },
+      { q: "What is the purpose of a binary search tree?", options: ["To store items in insertion order", "To allow efficient search, insert, and delete", "To compress data", "To manage networks"], answer: 1, explain: "BSTs organize data so searches can be done efficiently by comparing keys." }
+    ]
+  }
 };
 
 const DIFFICULTY_CONFIG = {
@@ -42,11 +72,15 @@ const ACTION_SKIP = -2;
 const ACTION_TIMEOUT = -1;
 
 let selectedDifficulty = null;
+let selectedCategory = "general";
+let questionCount = 8;
 let quizQuestions = [];
 let currentQuestion = 0;
 let points = 0;
 let correctCount = 0;
 let streak = 0;
+let lives = 3;
+let hintUsedForCurrentQuestion = false;
 let timeLeft = 0;
 let timerInterval = null;
 let answered = false;
@@ -59,14 +93,17 @@ const quizScreen = document.getElementById("quiz-screen");
 const endScreen = document.getElementById("end-screen");
 
 const diffButtons = document.querySelectorAll(".diff-btn");
+const categoryButtons = document.querySelectorAll(".chip-btn");
+const questionCountSelect = document.getElementById("question-count-select");
 const restartBtn = document.getElementById("restart-btn");
 const skipBtn = document.getElementById("skip-btn");
 const shareBtn = document.getElementById("share-btn");
 const muteBtn = document.getElementById("mute-btn");
+const hintBtn = document.getElementById("hint-btn");
 
 const questionText = document.getElementById("question-text");
 const optionsDiv = document.getElementById("options");
-const questionCount = document.getElementById("question-count");
+const questionCountDisplay = document.getElementById("question-count");
 const scoreDisplay = document.getElementById("score-display");
 const progressFill = document.getElementById("progress-fill");
 const finalScore = document.getElementById("final-score");
@@ -78,16 +115,31 @@ const highScoreDisplay = document.getElementById("high-score");
 const bestScoreMsg = document.getElementById("best-score-msg");
 const explanationBox = document.getElementById("explanation");
 const difficultyLabel = document.getElementById("difficulty-label");
+const categoryLabel = document.getElementById("category-label");
 const progressPercent = document.getElementById("progress-percent");
 const performanceSummary = document.getElementById("performance-summary");
+const modeSummary = document.getElementById("mode-summary");
+const livesDisplay = document.getElementById("lives-display");
+const hintCountDisplay = document.getElementById("hint-count");
+const hintText = document.getElementById("hint-text");
 
 diffButtons.forEach(btn => btn.addEventListener("click", () => startQuiz(btn.dataset.diff)));
+categoryButtons.forEach(btn => btn.addEventListener("click", () => {
+  categoryButtons.forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  selectedCategory = btn.dataset.category;
+  categoryLabel.textContent = btn.textContent;
+}));
+questionCountSelect.addEventListener("change", (event) => {
+  questionCount = Number(event.target.value);
+});
 restartBtn.addEventListener("click", () => {
   endScreen.classList.remove("active");
   startScreen.classList.add("active");
   showHighScoreOnStart();
 });
 skipBtn.addEventListener("click", () => selectAnswer(ACTION_SKIP));
+hintBtn.addEventListener("click", useHint);
 shareBtn.addEventListener("click", shareResult);
 muteBtn.addEventListener("click", toggleMute);
 document.addEventListener("keydown", handleKeydown);
@@ -115,7 +167,8 @@ function showHighScoreOnStart() {
 function startQuiz(difficulty) {
   selectedDifficulty = difficulty;
   const config = DIFFICULTY_CONFIG[difficulty];
-  const bank = shuffle(questionBank[difficulty]);
+  const categoryBank = questionBank[selectedCategory][difficulty];
+  const bank = shuffle(categoryBank).slice(0, questionCount);
   quizQuestions = bank.map(item => {
     const optionPairs = item.options.map((opt, i) => ({ text: opt, isCorrect: i === item.answer }));
     const shuffledOptions = shuffle(optionPairs);
@@ -123,7 +176,8 @@ function startQuiz(difficulty) {
       question: item.q,
       explain: item.explain,
       options: shuffledOptions.map(o => o.text),
-      answer: shuffledOptions.findIndex(o => o.isCorrect)
+      answer: shuffledOptions.findIndex(o => o.isCorrect),
+      hint: item.explain.split(" ").slice(0, 6).join(" ") + "..."
     };
   });
 
@@ -131,9 +185,13 @@ function startQuiz(difficulty) {
   points = 0;
   correctCount = 0;
   streak = 0;
+  lives = 3;
+  hintUsedForCurrentQuestion = false;
   answerTimes = [];
 
   difficultyLabel.textContent = config.label;
+  categoryLabel.textContent = selectedCategory === "general" ? "General" : selectedCategory === "web" ? "Web" : "CS";
+  updateStatusDisplays();
   startScreen.classList.remove("active");
   endScreen.classList.remove("active");
   quizScreen.classList.add("active");
@@ -143,14 +201,17 @@ function startQuiz(difficulty) {
 function showQuestion() {
   answered = false;
   skipBtn.disabled = false;
+  hintUsedForCurrentQuestion = false;
+  hintBtn.disabled = false;
   explanationBox.classList.remove("visible");
   explanationBox.textContent = "";
+  hintText.textContent = "";
 
   const q = quizQuestions[currentQuestion];
   const config = DIFFICULTY_CONFIG[selectedDifficulty];
 
   questionText.textContent = q.question;
-  questionCount.textContent = `Q${String(currentQuestion + 1).padStart(2, "0")} / ${quizQuestions.length}`;
+  questionCountDisplay.textContent = `Q${String(currentQuestion + 1).padStart(2, "0")} / ${quizQuestions.length}`;
   scoreDisplay.textContent = `${points} pts`;
   const progressValue = Math.round((currentQuestion / quizQuestions.length) * 100);
   progressFill.style.width = `${progressValue}%`;
@@ -168,6 +229,7 @@ function showQuestion() {
     optionsDiv.appendChild(btn);
   });
 
+  updateStatusDisplays();
   questionStartTime = performance.now();
   startTimer(config.time);
 }
@@ -205,6 +267,7 @@ function selectAnswer(selectedIndex) {
   if (answered) return;
   answered = true;
   skipBtn.disabled = true;
+  hintBtn.disabled = true;
   clearInterval(timerInterval);
 
   const q = quizQuestions[currentQuestion];
@@ -233,6 +296,7 @@ function selectAnswer(selectedIndex) {
   } else {
     points += config.wrong;
     streak = 0;
+    lives--;
     playTone("wrong");
   }
 
@@ -241,6 +305,11 @@ function selectAnswer(selectedIndex) {
   explanationBox.classList.add("visible");
 
   setTimeout(() => {
+    if (lives <= 0 && selectedIndex !== q.answer) {
+      finishQuiz();
+      return;
+    }
+
     currentQuestion++;
     if (currentQuestion < quizQuestions.length) {
       showQuestion();
@@ -262,20 +331,35 @@ function getPerformanceRating(averageSeconds, accuracy) {
   return "Keep improving";
 }
 
+function useHint() {
+  if (hintUsedForCurrentQuestion || answered) return;
+  const q = quizQuestions[currentQuestion];
+  hintUsedForCurrentQuestion = true;
+  hintText.textContent = `Hint: ${q.hint}`;
+  updateStatusDisplays();
+}
+
+function updateStatusDisplays() {
+  const hearts = "❤".repeat(Math.max(lives, 0));
+  livesDisplay.textContent = `${hearts}`;
+  hintCountDisplay.textContent = hintUsedForCurrentQuestion ? "💡 Hint used" : "💡 1 hint";
+  hintBtn.disabled = hintUsedForCurrentQuestion;
+}
+
 function finishQuiz() {
   quizScreen.classList.remove("active");
   endScreen.classList.add("active");
   progressFill.style.width = "100%";
 
   const config = DIFFICULTY_CONFIG[selectedDifficulty];
-  finalScore.textContent = `${points} points`;
-  finalDetail.textContent = `${correctCount} / ${quizQuestions.length} correct on ${config.label} difficulty`;
-
   const pct = correctCount / quizQuestions.length;
-  resultHeading.textContent = pct >= 0.8 ? "Excellent work" : pct >= 0.5 ? "Good effort" : "Keep practicing";
-
   const avgTime = getAverageResponse();
   const rating = getPerformanceRating(avgTime, pct);
+
+  finalScore.textContent = `${points} points`;
+  finalDetail.textContent = `${correctCount} / ${quizQuestions.length} correct on ${config.label} difficulty`;
+  modeSummary.textContent = `${selectedCategory === "general" ? "General" : selectedCategory === "web" ? "Web" : "CS"} • ${questionCount} questions • ${lives} lives`;
+  resultHeading.textContent = pct >= 0.8 ? "Excellent work" : pct >= 0.5 ? "Good effort" : "Keep practicing";
   performanceSummary.textContent = `Average answer time: ${avgTime.toFixed(1)}s · Accuracy: ${Math.round(pct * 100)}% · ${rating}`;
 
   const key = HIGH_SCORE_PREFIX + selectedDifficulty;
