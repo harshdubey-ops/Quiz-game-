@@ -25,6 +25,7 @@ A polished web-based quiz that tests programming knowledge and response speed. T
 2. Answer each question before time runs out
 3. Skip a question if you're unsure
 4. Review your performance score after the quiz
+5. 
 
 ## 📌 Notes
 - The app saves the best score per difficulty in local storage.
