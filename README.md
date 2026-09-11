@@ -2,6 +2,7 @@
 
 A polished web-based quiz that tests programming knowledge and response speed. The game includes instant feedback, performance rating, and high-score tracking for each difficulty level.
 
+
 ## 🎯 Features
 - 4 multiple-choice programming questions per category and difficulty
 - Easy / Medium / Hard difficulty levels
